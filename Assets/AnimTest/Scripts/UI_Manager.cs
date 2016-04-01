@@ -8,6 +8,7 @@ public class UI_Manager : MonoBehaviour
     public Button Vertex_Btn;
     public Button Line_Btn;
     public Button Drag_Btn;
+    public Button Trash_Btn;
 
     public Elements_Manager elementsManager;
     
@@ -43,5 +44,5 @@ public class UI_Manager : MonoBehaviour
 
 public enum Modes
 {
-    Vertex, Line, Drag
+    Vertex, Line, Drag, Trash
 }
