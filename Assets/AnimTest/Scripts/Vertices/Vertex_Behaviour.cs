@@ -11,19 +11,15 @@ public class Vertex_Behaviour : MonoBehaviour
 
     public C_Vertex Vertex;
 
-    void Start()
+    public void Set_Vertex()
     {
         elementsManager = GameObject.Find("Main_Manager").GetComponent<Elements_Manager>();
-    }
-
-    public void SetVertex()
-    {
-        Vertex = new C_Vertex(transform.position);
+        Vertex = new C_Vertex(elementsManager.Get_Frames_Count(), transform.position);
     }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if ((collider.tag == "Pointer") && (!elementsManager.IsVertexSelected()))
+        if ((collider.tag == "Pointer") && (!elementsManager.Is_Vertex_Selected()))
         {
             GetComponent<SpriteRenderer>().material = Selected;
             elementsManager.Set_Selected_Vertex(transform, false);
@@ -37,12 +33,19 @@ public class Vertex_Behaviour : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().material = IDLE;
             elementsManager.Set_Selected_Vertex(transform, true);
+            IsThisVertexSelected = false;
         }
     }
 
-    public void DeleteVertex()
+    public void Apply_Animation(int start_frame, float delta)
     {
-        Vertex.DeleteVertex();
+        transform.position = Vertex.Get_Next_Position(start_frame, delta);
+        Vertex.Apply_Lines_Positions();
+    }
+
+    public void Destroy_Vertex_Behaviour()
+    {
+        Vertex.Destroy_Vertex();
         Object.Destroy(gameObject);
     }
 }

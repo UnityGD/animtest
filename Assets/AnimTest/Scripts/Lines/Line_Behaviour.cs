@@ -21,37 +21,37 @@ public class Line_Behaviour : MonoBehaviour
         Line = gameObject.GetComponent<LineRenderer>();
     }
 
-    public void SetPositions()
+    public void Set_Positions()
     {
         Line.SetPosition(0, Start_Vertex.position);
         Line.SetPosition(1, End_Vertex.position);
 
-        ApplyCollider();
+        Apply_Collider();
     }
 
-    public void SetStartVertex(Transform startVertex)
+    public void Set_Start_Vertex(Transform startVertex)
     {
         Start_Vertex = startVertex;
         Start_C_Vertex = startVertex.GetComponent<Vertex_Behaviour>().Vertex;
     }
 
-    public Transform GetStartVertex()
+    public Transform Get_Start_Vertex()
     {
         return Start_Vertex;
     }
 
-    public void SetEndVertex(Transform endVertex)
+    public void Set_End_Vertex(Transform endVertex)
     {
         End_Vertex = endVertex;
         End_C_Vertex = endVertex.GetComponent<Vertex_Behaviour>().Vertex;
     }
 
-    public Transform GetEndVertex()
+    public Transform Get_End_Vertex()
     {
         return End_Vertex;
     }
 
-    public void CreateCollider()
+    public void Create_Collider()
     {
         GameObject go = new GameObject();
         go.transform.parent = transform;
@@ -60,12 +60,12 @@ public class Line_Behaviour : MonoBehaviour
         Line_Collider.isTrigger = true;
 
         go.AddComponent<Line_Collider_Behaivour>();
-        go.GetComponent<Line_Collider_Behaivour>().SetMaterials(IDLE, Selected);
+        go.GetComponent<Line_Collider_Behaivour>().Set_Materials(IDLE, Selected);
 
-        ApplyCollider();
+        Apply_Collider();
     }
 
-    public void ApplyCollider()
+    public void Apply_Collider()
     {
         float length = Vector3.Distance(Start_Vertex.position, End_Vertex.position);
         Line_Collider.size = new Vector2(length, 0.1f);
@@ -76,8 +76,8 @@ public class Line_Behaviour : MonoBehaviour
         Line_Collider.transform.Rotate(0f, 0f, angle);
     }
 
-    public void DeleteLine()
+    public void Destroy_Line()
     {
-        Start_C_Vertex.DeleteLine(this);
+        Start_C_Vertex.Destroy_Line(this);
     }
 }

@@ -69,14 +69,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AnimTest\Scripts\Elements\C_Line.cs" />
-    <Compile Include="Assets\AnimTest\Scripts\Elements\C_Vertex.cs" />
-    <Compile Include="Assets\AnimTest\Scripts\Elements\Elements_Manager.cs" />
-    <Compile Include="Assets\AnimTest\Scripts\Elements\Line_Behaviour.cs" />
-    <Compile Include="Assets\AnimTest\Scripts\Elements\Line_Collider_Behaivour.cs" />
-    <Compile Include="Assets\AnimTest\Scripts\Elements\Vertex_Behaviour.cs" />
-    <Compile Include="Assets\AnimTest\Scripts\PF_Manager.cs" />
+    <Compile Include="Assets\AnimTest\Scripts\Elements_Manager.cs" />
+    <Compile Include="Assets\AnimTest\Scripts\Lines\Line_Behaviour.cs" />
+    <Compile Include="Assets\AnimTest\Scripts\Lines\Line_Collider_Behaivour.cs" />
     <Compile Include="Assets\AnimTest\Scripts\UI_Manager.cs" />
+    <Compile Include="Assets\AnimTest\Scripts\Vertices\C_Vertex.cs" />
+    <Compile Include="Assets\AnimTest\Scripts\Vertices\Vertex_Behaviour.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

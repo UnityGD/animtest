@@ -14,7 +14,7 @@ public class Line_Collider_Behaivour : MonoBehaviour
         elementsManager = GameObject.Find("Main_Manager").GetComponent<Elements_Manager>();
     }
 
-    public void SetMaterials(Material idle, Material selected)
+    public void Set_Materials(Material idle, Material selected)
     {
         IDLE = idle;
         Selected = selected;
@@ -22,7 +22,7 @@ public class Line_Collider_Behaivour : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if ((collider.tag == "Pointer") && (!elementsManager.IsLineSelected()))
+        if ((collider.tag == "Pointer") && (!elementsManager.Is_Line_Selected() && (elementsManager.Get_Current_Mode() == Modes.Trash)))
         {
             transform.parent.GetComponent<LineRenderer>().material = Selected;
             elementsManager.Set_Selected_Line(transform.parent.GetComponent<Line_Behaviour>(), false);

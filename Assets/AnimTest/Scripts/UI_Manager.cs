@@ -10,8 +10,16 @@ public class UI_Manager : MonoBehaviour
     public Button Drag_Btn;
     public Button Trash_Btn;
 
+    public Button PlayPause_Btn;
+    public Button Previous_Frame_Btn;
+    public Button Next_Frame_Btn;
+    public Text Current_Frame_Txt;
+
     public Elements_Manager elementsManager;
-    
+
+    public GameObject PF_Vertex;
+    public GameObject PF_Line;
+
     Button Current_Btn;
 
     void Start()
@@ -24,25 +32,40 @@ public class UI_Manager : MonoBehaviour
 
     public void UI_Switch_Btn(GameObject sender)
     {
-        Current_Btn.interactable = true;
-        sender.GetComponent<Button>().interactable = false;
-        Current_Btn = sender.GetComponent<Button>();
+        if (!elementsManager.Get_Line_State())
+        {
+            Current_Btn.interactable = true;
+            sender.GetComponent<Button>().interactable = false;
+            Current_Btn = sender.GetComponent<Button>();
+        }
     }
 
     public void UI_Set_Mode(string mode)
     {
-        try
+        if (!elementsManager.Get_Line_State())
         {
-            elementsManager.Set_Current_Mode((Modes)Enum.Parse(typeof(Modes), mode));
+            try
+            {
+                elementsManager.Set_Current_Mode((Modes)Enum.Parse(typeof(Modes), mode));
+            }
+            catch
+            {
+                Debug.Log("'" + mode + "' mode not found!");
+            }
         }
-        catch
+    }
+
+    public void UI_Select_Frame(bool IsForward)
+    {
+        if (!elementsManager.Get_Line_State())
         {
-            Debug.Log("'" + mode + "' mode not found!");
+            elementsManager.Move_Frame(IsForward);
+            Current_Frame_Txt.text = elementsManager.Get_Current_Frame().ToString();
         }
     }
 }
 
 public enum Modes
 {
-    Vertex, Line, Drag, Trash
+    Vertex, Line, Drag, Trash, Play
 }
